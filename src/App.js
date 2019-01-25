@@ -1,8 +1,23 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Button } from "@material-ui/core";
+import logo from "./logo.svg";
+import "./App.css";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      clicked: false
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({
+      clicked: true
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -11,14 +26,14 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={this.handleClick}
           >
-            Learn React
-          </a>
+            Click me
+          </Button>
+          {this.state.clicked && `You clicked it!`}
         </header>
       </div>
     );
