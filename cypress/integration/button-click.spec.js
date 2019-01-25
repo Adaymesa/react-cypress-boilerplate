@@ -1,10 +1,14 @@
 import { home } from "../fixtures";
 
 describe("My First Test", function() {
-  before(() => {
+  beforeEach(() => {
     cy.visit("localhost:3000");
   });
-  it("Does not do much!", function() {
+  it("Hidden Message is not visible on page load", () => {
+    cy.contains(home.hiddenMessage).should("be.not.visible");
+  });
+
+  it("Hidden Message is visible after clicking button", () => {
     cy.contains(home.button).click();
     cy.contains(home.hiddenMessage).should("be.visible");
   });
